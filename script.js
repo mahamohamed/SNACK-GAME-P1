@@ -1,30 +1,103 @@
-// VARIABELS:
-// SNAKE: SNAKE CHARATER INCLUDE DIRECTION
-let SNACK
-// SCORE: CURRENT SCORE
+// ---------------------------- Variables (state) ----------------------------/
+let SNAKE
+let SNAKEBODY
+let SNACKTAIL
 let SCORE = 0
-// HIGHESTSCORE: TO SEE THE HIGHEST SCORE
 let HIGHESTSCORE = 0
-// SNACKOPTIONS:[ARRAY] (APPLE,CANDY,BALL, AND RANDOM) SO PLAYER CAN USE
-let SNACKOPTIONS = [apple, candy, ball, random]
-// DIFFICALTYLEVEL:[ARRAY] (EASY, MEDIUM,AND HARD) LIST THE AVAILABLE LEVEL TO SELECT
-let DIFFICALTYLEVEL = [easy, medium, hard]
-// CURRENTDIFFICALTY: TO KNOW THE LEVEL
 let CURRENTDIFFICALTY = ''
-// TIMER: TO SEE THE TIME AND CALCULATE THE HIGHESTSCORE
 let TIMER = 0
-// GAMESTARTED: TO KNOW IF THE LEVEL START OR NOT
 let GAMESTARTED = false
-// GAMEEND: TO KNOW IF THE GAME IS END OR NOT
 let GAMEEND = false
-// FUNCTIONS:
-// FUNCTION FOR DISPLAY LADING PAGE WITH GAME PIC , TITLE AND START BUTTON.
-// FUNCTION FOR CHOOSING SNACKS OPTIONS DISPLAY SNACK OPTIONS (APPLE,CANDY,BALL, AND RANDOM) [USER SELECT OPTION]
-// FUNCTION FOR CHOOSE DIFFICULTY LEVEL DISPLAY DIFFICULTY LEVEL BUTTONS (EASY,MEDIUM,HARD) [USER SELECT THE DIFFICULTY LEVEL]
-// FUNCTION TO KNOW IF THE GAME IS STARTED
-// FUNCTION FOR CHANGE DIRECTION [KEY] BASED ON KEY INPUT
-// FUNCTION TO UPDATE THE SCORE IF ITS THE HIGHEST VALUE OR NOT
-// FUNCTION TO START EFFECT OF SOUND
-// EVENT LISTENER:
-// FUNCTION TO HANDLE KEY PRESS EVENTS AND CONTROL SNAKE MOVEMENT
-// ADD EVENT LISTENERS FOR KEYBOARD INPUT
+board = [
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  ''
+]
+// -------------------------------- Constants --------------------------------/
+const SNACKOPTIONS = ['apple', 'candy', 'ball', 'random']
+const DIFFICALTYLEVEL = ['easy', 'medium', 'hard']
+const INITIALSNACKX = [0]
+const INITIALSNACKY = [0]
+// ------------------------ Cached Element References ------------------------/
+
+// -------------------------------- Functions --------------------------------/
+
+// ----------------------------- Event Listeners -----------------------------/
