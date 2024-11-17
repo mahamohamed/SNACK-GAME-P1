@@ -1,70 +1,24 @@
 body {
+  background-color: gainsboro;
+  font-family: system-ui, sans-serif;
+  margin: 0;
   text-align: center;
-}
-.board {
-  margin: auto;
-  display: grid;
-  grid-template-rows: repeat(9, 1fr);
-  grid-template-columns: repeat(9, 1fr);
-  width: 100%;
-  height: 80vh;
-  border: 2px solid rgb(241, 81, 108);
-  flex-wrap: wrap;
-}
-.sqr {
-  width: 30 px;
-  height: 30px;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-}
-a {
-  background-color: pink;
-  color: rgb(223, 29, 61);
-  padding: 14px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
-.options {
-  background-color: pink;
-  color: rgb(223, 29, 61);
-  padding: 14px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  font-size: 24px;
-  margin: 10px auto;
-  background-color: rgb(252, 147, 164);
-  border: none;
-  display: inline-block;
 }
 h1 {
   color: rgb(223, 29, 61);
 }
 
-#snake {
-  width: 20px;
-  height: 20px;
-  background-color: rgb(134, 20, 39);
-  position: absolute;
-  top: 100px;
-  left: 100px;
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 500px;
+  text-align: center;
+  margin: 20px auto;
 }
-
-#snack {
-  width: 20px;
-  height: 20px;
-  background-color: rgb(231, 105, 126);
-  position: absolute;
-  top: 200px;
-  left: 200px;
+.sqr {
+  width: 3.5%;
+  aspect-ratio: 1/1;
+  border: 0.1px solid rgb(238, 82, 108);
+  font-size: 64px;
+  text-align: center;
 }
