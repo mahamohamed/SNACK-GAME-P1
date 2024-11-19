@@ -592,9 +592,158 @@ let foodItems = [
   { emoji: '⚽', type: 'ball' }
 ]
 let foodLocation = ''
+let interval
+let speed = 1000
 // -------------------------------- Constants --------------------------------/
 
 // -------------------------------- Functions --------------------------------/
+
+let movement = () => {
+  if (direction === 'down') {
+    direction = 'down'
+    // to work on each square in the board
+    snake.forEach((element, index) => {
+      // for head
+      if (index === 0) {
+        // store location for the body
+        headLocation = element
+        // make the element in the board empty
+        board[snake[index].substring(1)] = ''
+        // to move
+
+        snake[index] = `i${Number(element.substring(1)) + boxSize}`
+
+        if (
+          board[snake[index].substring(1)] !== 'obstacle' &&
+          board[snake[index].substring(1)] !== 'sn' &&
+          board[snake[index].substring(1)] !== ''
+        ) {
+          eat()
+          return
+        }
+        if (
+          board[snake[index].substring(1)] === 'obstacle' ||
+          board[snake[index].substring(1)] === 'sn'
+        ) {
+          restart()
+          return
+        }
+        //  to make it green
+        board[snake[index].substring(1)] = 'sn'
+      }
+      // to the body and tail
+      else {
+        // make the element in the board empty
+        board[snake[index].substring(1)] = ''
+        // use the past location of the head
+        snake[index] = headLocation
+        //  to make it green
+        board[snake[index].substring(1)] = 'sn'
+        headLocation = element
+      }
+    })
+    board[headLocation.substring(1)] = ''
+    update()
+    // note i use substring bcuz i just want the number without i
+  } else if (direction === 'up') {
+    direction = 'up'
+    snake.forEach((element, index) => {
+      if (index === 0) {
+        headLocation = element
+        board[snake[index].substring(1)] = ''
+        snake[index] = `i${Number(element.substring(1)) - boxSize}`
+        if (
+          board[snake[index].substring(1)] !== 'obstacle' &&
+          board[snake[index].substring(1)] !== 'sn' &&
+          board[snake[index].substring(1)] !== ''
+        ) {
+          eat()
+          return
+        }
+        if (
+          board[snake[index].substring(1)] === 'obstacle' ||
+          board[snake[index].substring(1)] === 'sn'
+        ) {
+          restart()
+          return
+        }
+        board[snake[index].substring(1)] = 'sn'
+      } else {
+        board[snake[index].substring(1)] = ''
+        snake[index] = headLocation
+        board[snake[index].substring(1)] = 'sn'
+        headLocation = element
+      }
+    })
+    board[headLocation.substring(1)] = ''
+    update()
+  } else if (direction === 'right') {
+    direction = 'right'
+    snake.forEach((element, index) => {
+      if (index === 0) {
+        headLocation = element
+        board[snake[index].substring(1)] = ''
+        snake[index] = `i${Number(element.substring(1)) + 1}`
+        if (
+          board[snake[index].substring(1)] !== 'obstacle' &&
+          board[snake[index].substring(1)] !== 'sn' &&
+          board[snake[index].substring(1)] !== ''
+        ) {
+          eat()
+          return
+        }
+        if (
+          board[snake[index].substring(1)] === 'obstacle' ||
+          board[snake[index].substring(1)] === 'sn'
+        ) {
+          restart()
+          return
+        }
+        board[snake[index].substring(1)] = 'sn'
+      } else {
+        board[snake[index].substring(1)] = ''
+        snake[index] = headLocation
+        board[snake[index].substring(1)] = 'sn'
+        headLocation = element
+      }
+    })
+    board[headLocation.substring(1)] = ''
+    update()
+  } else if (direction === 'left') {
+    direction = 'left'
+    snake.forEach((element, index) => {
+      if (index === 0) {
+        headLocation = element
+        board[snake[index].substring(1)] = ''
+        snake[index] = `i${Number(element.substring(1)) - 1}`
+        if (
+          board[snake[index].substring(1)] !== 'obstacle' &&
+          board[snake[index].substring(1)] !== 'sn' &&
+          board[snake[index].substring(1)] !== ''
+        ) {
+          eat()
+          return
+        }
+        if (
+          board[snake[index].substring(1)] === 'obstacle' ||
+          board[snake[index].substring(1)] === 'sn'
+        ) {
+          restart()
+          return
+        }
+        board[snake[index].substring(1)] = 'sn'
+      } else {
+        board[snake[index].substring(1)] = ''
+        snake[index] = headLocation
+        board[snake[index].substring(1)] = 'sn'
+        headLocation = element
+      }
+    })
+    board[headLocation.substring(1)] = ''
+    update()
+  }
+}
+
 const update = () => {
   let div = ''
   // to this function work on each square in the board
@@ -616,6 +765,8 @@ const update = () => {
       div.textContent = element.emoji
     }
   })
+  clearInterval(interval)
+  interval = setInterval(movement, speed)
 }
 const snackLocation = () => {
   // finding empty squares (checks all the squares) store indexes
@@ -640,14 +791,26 @@ const snackLocation = () => {
   }
 }
 const eat = () => {
-  snake.push(foodLocation)
+  // Add the new food location to the snake
+  snake.push(`i${foodLocation}`)
+  // Update the board to reflect the snake's new position
   board[foodLocation] = 'sn'
+
+  // Remove the emoji from the div where the food was eaten
+  const foodDiv = document.querySelector(`#i${foodLocation}`)
+  if (foodDiv) {
+    foodDiv.textContent = '' // Clear the emoji
+  }
+
+  // Spawn a new food item on the board
   snackLocation()
+  // Update the visual representation
   update()
 }
+
 snackLocation()
 update()
-eat()
+
 // ----------------------------- Event Listeners -----------------------------/
 // event listener to use the keyboard key
 document.addEventListener('keyup', (event) => {
@@ -663,8 +826,24 @@ document.addEventListener('keyup', (event) => {
         // make the element in the board empty
         board[snake[index].substring(1)] = ''
         // to move
+
         snake[index] = `i${Number(element.substring(1)) + boxSize}`
 
+        if (
+          board[snake[index].substring(1)] !== 'obstacle' &&
+          board[snake[index].substring(1)] !== 'sn' &&
+          board[snake[index].substring(1)] !== ''
+        ) {
+          eat()
+          return
+        }
+        if (
+          board[snake[index].substring(1)] === 'obstacle' ||
+          board[snake[index].substring(1)] === 'sn'
+        ) {
+          restart()
+          return
+        }
         //  to make it green
         board[snake[index].substring(1)] = 'sn'
       }
@@ -689,6 +868,21 @@ document.addEventListener('keyup', (event) => {
         headLocation = element
         board[snake[index].substring(1)] = ''
         snake[index] = `i${Number(element.substring(1)) - boxSize}`
+        if (
+          board[snake[index].substring(1)] !== 'obstacle' &&
+          board[snake[index].substring(1)] !== 'sn' &&
+          board[snake[index].substring(1)] !== ''
+        ) {
+          eat()
+          return
+        }
+        if (
+          board[snake[index].substring(1)] === 'obstacle' ||
+          board[snake[index].substring(1)] === 'sn'
+        ) {
+          restart()
+          return
+        }
         board[snake[index].substring(1)] = 'sn'
       } else {
         board[snake[index].substring(1)] = ''
@@ -706,6 +900,21 @@ document.addEventListener('keyup', (event) => {
         headLocation = element
         board[snake[index].substring(1)] = ''
         snake[index] = `i${Number(element.substring(1)) + 1}`
+        if (
+          board[snake[index].substring(1)] !== 'obstacle' &&
+          board[snake[index].substring(1)] !== 'sn' &&
+          board[snake[index].substring(1)] !== ''
+        ) {
+          eat()
+          return
+        }
+        if (
+          board[snake[index].substring(1)] === 'obstacle' ||
+          board[snake[index].substring(1)] === 'sn'
+        ) {
+          restart()
+          return
+        }
         board[snake[index].substring(1)] = 'sn'
       } else {
         board[snake[index].substring(1)] = ''
@@ -723,6 +932,21 @@ document.addEventListener('keyup', (event) => {
         headLocation = element
         board[snake[index].substring(1)] = ''
         snake[index] = `i${Number(element.substring(1)) - 1}`
+        if (
+          board[snake[index].substring(1)] !== 'obstacle' &&
+          board[snake[index].substring(1)] !== 'sn' &&
+          board[snake[index].substring(1)] !== ''
+        ) {
+          eat()
+          return
+        }
+        if (
+          board[snake[index].substring(1)] === 'obstacle' ||
+          board[snake[index].substring(1)] === 'sn'
+        ) {
+          restart()
+          return
+        }
         board[snake[index].substring(1)] = 'sn'
       } else {
         board[snake[index].substring(1)] = ''
@@ -735,3 +959,33 @@ document.addEventListener('keyup', (event) => {
     update()
   }
 })
+
+const restart = () => {
+  // Loop through the board and clear the board
+  board.forEach((element, index) => {
+    if (element !== 'obstacle') {
+      board[index] = '' // Reset non-obstacle positions on the board
+    }
+
+    // Clear the emoji from the board's divs (if there's any)
+    const div = document.querySelector(`#i${index}`)
+    if (div) {
+      div.textContent = '' // Remove the emoji
+    }
+  })
+
+  // Reset the snake to its initial positions
+  snake.length = 0 // Clear the snake array
+  snake = ['i286', 'i287', 'i288'] // Set the snake's initial positions
+  direction = 'left'
+  // Place the snake on the board
+  board[snake[0].substring(1)] = 'sn'
+  board[snake[1].substring(1)] = 'sn'
+  board[snake[2].substring(1)] = 'sn'
+
+  // Reset the food
+  snackLocation()
+
+  // Update the board view
+  update()
+}
