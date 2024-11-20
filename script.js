@@ -124,30 +124,6 @@ let board = [
   '',
   '',
   '',
-  'obstacle',
-  'obstacle',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
   '',
   'obstacle',
   'obstacle',
@@ -277,6 +253,30 @@ let board = [
   'obstacle',
   'obstacle',
   '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  'obstacle',
+  'obstacle',
   '',
   '',
   '',
@@ -290,6 +290,7 @@ let board = [
   'sn',
   'sn',
   'sn',
+  '',
   '',
   '',
   '',
@@ -593,12 +594,15 @@ let foodItems = [
 ]
 let foodLocation = ''
 let interval
-let speed = 1000
+let speed = 300
 // -------------------------------- Constants --------------------------------/
+const score = document.querySelector('#score')
 
 // -------------------------------- Functions --------------------------------/
-
-let movement = () => {
+const endPage = () => {
+  window.location.href = 'end.html'
+}
+const movement = () => {
   if (direction === 'down') {
     direction = 'down'
     // to work on each square in the board
@@ -625,6 +629,7 @@ let movement = () => {
           board[snake[index].substring(1)] === 'obstacle' ||
           board[snake[index].substring(1)] === 'sn'
         ) {
+          endPage()
           restart()
           return
         }
@@ -664,6 +669,7 @@ let movement = () => {
           board[snake[index].substring(1)] === 'obstacle' ||
           board[snake[index].substring(1)] === 'sn'
         ) {
+          endPage()
           restart()
           return
         }
@@ -696,6 +702,7 @@ let movement = () => {
           board[snake[index].substring(1)] === 'obstacle' ||
           board[snake[index].substring(1)] === 'sn'
         ) {
+          endPage()
           restart()
           return
         }
@@ -728,6 +735,7 @@ let movement = () => {
           board[snake[index].substring(1)] === 'obstacle' ||
           board[snake[index].substring(1)] === 'sn'
         ) {
+          endPage()
           restart()
           return
         }
@@ -752,10 +760,10 @@ const update = () => {
     div = document.querySelector(`#i${index}`)
     // if i write obstacle then the square will become black
     if (element === 'obstacle') {
-      div.style.backgroundColor = 'black'
+      div.style.backgroundColor = 'pink'
       // if i write sn then the square will become green to make sure it work and we will use it then to make the snake look like it move
     } else if (element === 'sn') {
-      div.style.backgroundColor = 'green'
+      div.style.backgroundColor = 'rgb(194, 59, 98)'
     } else if (element === '') {
       div.style.backgroundColor = 'white'
     }
@@ -765,8 +773,38 @@ const update = () => {
       div.textContent = element.emoji
     }
   })
+  score.innerHTML = `<h4>score: ${snake.length - 3}</h4>`
   clearInterval(interval)
   interval = setInterval(movement, speed)
+}
+const speedLevel = () => {
+  if (score >= 0 && score <= 3) {
+    speed = 300
+  } else if (score >= 4 && score <= 7) {
+    speed = 290
+  } else if (score >= 8 && score <= 11) {
+    speed = 280
+  } else if (score >= 12 && score <= 15) {
+    speed = 270
+  } else if (score >= 16 && score <= 19) {
+    speed = 260
+  } else if (score >= 20 && score <= 23) {
+    speed = 250
+  } else if (score >= 24 && score <= 27) {
+    speed = 240
+  } else if (score >= 28 && score <= 31) {
+    speed = 230
+  } else if (score >= 32 && score <= 35) {
+    speed = 220
+  } else if (score >= 36 && score <= 39) {
+    speed = 210
+  } else if (score >= 40 && score <= 43) {
+    speed = 200
+  } else if (score >= 44 && score <= 47) {
+    speed = 190
+  } else {
+    speed = 150
+  }
 }
 const snackLocation = () => {
   // finding empty squares (checks all the squares) store indexes
@@ -841,6 +879,7 @@ document.addEventListener('keyup', (event) => {
           board[snake[index].substring(1)] === 'obstacle' ||
           board[snake[index].substring(1)] === 'sn'
         ) {
+          endPage()
           restart()
           return
         }
@@ -880,6 +919,7 @@ document.addEventListener('keyup', (event) => {
           board[snake[index].substring(1)] === 'obstacle' ||
           board[snake[index].substring(1)] === 'sn'
         ) {
+          endPage()
           restart()
           return
         }
@@ -912,6 +952,7 @@ document.addEventListener('keyup', (event) => {
           board[snake[index].substring(1)] === 'obstacle' ||
           board[snake[index].substring(1)] === 'sn'
         ) {
+          endPage()
           restart()
           return
         }
@@ -944,6 +985,7 @@ document.addEventListener('keyup', (event) => {
           board[snake[index].substring(1)] === 'obstacle' ||
           board[snake[index].substring(1)] === 'sn'
         ) {
+          endPage()
           restart()
           return
         }

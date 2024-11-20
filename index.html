@@ -5,14 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <script defer src="script.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
     <title>SNACK GAME</title>
   </head>
-  <body>
+  <body id="home">
     <h1>SNACK GAME</h1>
-
+    <div id="instructions">
+      <h2>How to Play</h2>
+      <p>Use the arrow keys on your keyboard to control the snake:</p>
+      <ul>
+        <li><strong>Arrow Up</strong>: Move the snake upwards.</li>
+        <li><strong>Arrow Down</strong>: Move the snake downwards.</li>
+        <li><strong>Arrow Left</strong>: Move the snake left.</li>
+        <li><strong>Arrow Right</strong>: Move the snake right.</li>
+      </ul>
+      <p>
+        Your goal is to collect food items that randomly appear on the board.
+        Every time the snake eats, it grows longer!
+      </p>
+      <p>
+        Be careful not to collide with obstacles or your own snake body, or the
+        game will end.
+      </p>
+      <p>Try to achieve the highest score possible!</p>
+    </div>
     <div id="HIDEBUTTON">
       <p id="title-explanation" class="text">LETS START THE GAME ...</p>
-      <a id="hideelement" href="./snakesoption.html">START</a>
+      <a id="hideelement" href="./gamepage.html">START</a>
     </div>
   </body>
 </html>

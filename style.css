@@ -1,28 +1,106 @@
 body {
-  background-color: gainsboro;
-  font-family: system-ui, sans-serif;
+  background-color: #fae0e6; /* Light pink background */
+  font-family: 'Montserrat', sans-serif; /* Elegant sans-serif font for body */
   margin: 0;
   text-align: center;
 }
 
 h1 {
-  color: rgb(223, 29, 61);
+  font-family: 'Playfair Display', serif; /* Luxurious serif font for headings */
+  color: #ff69b4;
+  font-weight: 700; /* Bold style for headings */
+}
+
+h2,
+p {
+  font-family: 'Montserrat', sans-serif; /* Clean, modern font for text */
+  color: #ff1493;
+  font-weight: 400; /* Regular weight for a more readable text */
 }
 
 .board {
   display: flex;
   flex-wrap: wrap;
-  width: 500px; /* Adjust the board size here */
+  width: 500px;
   margin: 20px auto;
-  border: 2px solid rgb(238, 82, 108); /* Optional for visual clarity */
+  border: 2px solid #ffb6c1;
 }
 
 .sqr {
-  width: 20px; /* Adjust based on board size */
-  height: 20px; /* Matches width to ensure square cells */
-  border: 0.1px solid rgb(238, 82, 108); /* Optional for grid visibility */
-  font-size: 16px; /* Adjust based on snake size */
+  width: 20px;
+  height: 20px;
+  border: 0.1px solid #ffc0cb;
+  font-size: 16px;
   text-align: center;
-  line-height: 20px; /* Center content vertically */
-  box-sizing: border-box; /* Includes border in sizing */
+  line-height: 20px;
+  box-sizing: border-box;
+}
+
+a {
+  display: inline-block;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  background-color: #ffc0cb;
+  border: 1px solid #ffc0cb;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif; /* Modern font for buttons */
+}
+
+a:hover {
+  background-color: #ff1493;
+  border-color: #ff1493;
+}
+h4 {
+  font-family: 'Playfair Display', serif;
+  color: #ff1493;
+  position: absolute; /* Position score on the left */
+  top: 10px;
+  left: 15px; /* Adjust this for distance from the left side */
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+  z-index: 100; /* Ensures it appears above other content */
+}
+/* Instructions section styling */
+#instructions {
+  background-color: #fff;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 60%;
+  margin: 30px auto;
+  text-align: left;
+  font-size: 1rem; /* Reduced font size */
+}
+
+#instructions h2 {
+  color: #333;
+  font-size: 1.5rem; /* Reduced font size for header */
+  margin-bottom: 10px;
+}
+
+#instructions p {
+  line-height: 1.6;
+  font-size: 0.9rem; /* Smaller text for paragraphs */
+}
+
+#instructions ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#instructions li {
+  background: url('arrow-icon.png') no-repeat left center;
+  padding-left: 30px;
+  margin: 10px 0;
+  font-size: 0.9rem; /* Smaller font size for list items */
+}
+
+#instructions li strong {
+  color: #007bff;
+  font-weight: bold;
 }
