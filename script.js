@@ -596,6 +596,7 @@ let foodLocation = ''
 let interval
 let speed = 300
 // -------------------------------- Constants --------------------------------/
+// to add the score
 const score = document.querySelector('#score')
 
 // -------------------------------- Functions --------------------------------/
@@ -1030,4 +1031,8 @@ const restart = () => {
 
   // Update the board view
   update()
+}
+window.onload = function () {
+  const music = document.getElementById('background-music')
+  music.play() // Play the audio automatically
 }
